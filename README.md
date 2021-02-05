@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
+If you've freshly cloned the repo:
 
-Things you may want to cover:
+0. `rails db:create db:migrate`
 
-* Ruby version
+Then always: 
 
-* System dependencies
+1. `bundle install`
+2. `yarn install`
 
-* Configuration
+## Development
+`rails s` 
+> will start `rails` and `rails-react`
 
-* Database creation
+`./bin/webpack-dev-server` 
+> to enable hot-reloading for JS files (i.e. React)
 
-* Database initialization
 
-* How to run the test suite
+## Implementation Notes
+### Routing
+This repo uses React and Rails with a static controller that is routed to by a catchall. The static controller serves a page that will mount React to the dom, and where further non-api routes are handled client side. 
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The catchall has a lambda that excludes activeStorage paths so the catchall doesn't screw up `GET`-ing stored stuff
